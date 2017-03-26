@@ -39,3 +39,4 @@ this should be seperated from the exception portal as a reusable tempalte, this 
 ```
 * do not use session, user id should be saved in a bearer/jwt token
 * an architecture that allows lazy loading
+* spa silo with angular 2 if possible https://vimeo.com/113704451 
