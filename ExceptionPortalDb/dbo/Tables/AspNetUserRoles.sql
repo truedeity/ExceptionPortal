@@ -1,7 +1,13 @@
 ﻿CREATE TABLE [dbo].[AspNetUserRoles] (
     [UserId] NVARCHAR (450) NOT NULL,
     [RoleId] NVARCHAR (450) NOT NULL,
-		[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+	[IsSuppressed]    BIT              CONSTRAINT [DF_AspNetUserRoles_IsSuppressed] DEFAULT ((0)) NOT NULL,
+    [CreatedDt]       DATETIME         NOT NULL,
+    [CreatedByUserId] INT              NOT NULL,
+    [UpdatedDt]       DATETIME         NULL,
+    [UpdatedByUserId] INT              NULL,
+    [LastUpdateGuid]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+	[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
     CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[AspNetRoles] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers] ([Id]) ON DELETE CASCADE

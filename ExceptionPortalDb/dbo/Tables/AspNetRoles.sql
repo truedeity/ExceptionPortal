@@ -3,7 +3,13 @@
     [ConcurrencyStamp] NVARCHAR (MAX) NULL,
     [Name]             NVARCHAR (256) NULL,
     [NormalizedName]   NVARCHAR (256) NULL,
-		[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+	[IsSuppressed]    BIT              CONSTRAINT [DF_AspNetRoles_IsSuppressed] DEFAULT ((0)) NOT NULL,
+    [CreatedDt]       DATETIME         NOT NULL,
+    [CreatedByUserId] INT              NOT NULL,
+    [UpdatedDt]       DATETIME         NULL,
+    [UpdatedByUserId] INT              NULL,
+    [LastUpdateGuid]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+	[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_AspNetRoles] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

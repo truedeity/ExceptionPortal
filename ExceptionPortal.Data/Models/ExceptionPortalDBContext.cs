@@ -17,11 +17,19 @@ namespace ExceptionPortal.Data.Models
                 entity.HasIndex(e => e.RoleId)
                     .HasName("IX_AspNetRoleClaims_RoleId");
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
 
                 entity.Property(e => e.RoleId)
                     .IsRequired()
                     .HasMaxLength(450);
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetRoleClaims)
@@ -35,11 +43,19 @@ namespace ExceptionPortal.Data.Models
 
                 entity.Property(e => e.Id).HasMaxLength(450);
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
 
                 entity.Property(e => e.Name).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedName).HasMaxLength(256);
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
@@ -47,7 +63,15 @@ namespace ExceptionPortal.Data.Models
                 entity.HasIndex(e => e.UserId)
                     .HasName("IX_AspNetUserClaims_UserId");
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId)
                     .IsRequired()
@@ -70,7 +94,15 @@ namespace ExceptionPortal.Data.Models
 
                 entity.Property(e => e.ProviderKey).HasMaxLength(450);
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId)
                     .IsRequired()
@@ -96,7 +128,15 @@ namespace ExceptionPortal.Data.Models
 
                 entity.Property(e => e.RoleId).HasMaxLength(450);
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetUserRoles)
@@ -118,7 +158,15 @@ namespace ExceptionPortal.Data.Models
 
                 entity.Property(e => e.Name).HasMaxLength(450);
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<AspNetUsers>(entity =>
@@ -132,15 +180,23 @@ namespace ExceptionPortal.Data.Models
 
                 entity.Property(e => e.Id).HasMaxLength(450);
 
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedUserName)
                     .IsRequired()
                     .HasMaxLength(256);
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });

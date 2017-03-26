@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[UserLogin] (
     [UserLoginId]     INT              IDENTITY (1, 1) NOT NULL,
-		[EntityGuid]	  uniqueidentifier not null default(newid()),
+	[EntityGuid]	  uniqueidentifier not null default(newid()),
     [UserId]          INT              NOT NULL,
     [LoginProvider]   NVARCHAR (MAX)   NULL,
     [ProviderKey]     NVARCHAR (MAX)   NULL,

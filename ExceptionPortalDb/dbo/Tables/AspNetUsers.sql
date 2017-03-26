@@ -14,7 +14,13 @@
     [SecurityStamp]        NVARCHAR (MAX)     NULL,
     [TwoFactorEnabled]     BIT                NOT NULL,
     [UserName]             NVARCHAR (256)     NULL,
-		[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+	[IsSuppressed]    BIT              CONSTRAINT [DF_AspNetUsers_IsSuppressed] DEFAULT ((0)) NOT NULL,
+    [CreatedDt]       DATETIME         NOT NULL,
+    [CreatedByUserId] INT              NOT NULL,
+    [UpdatedDt]       DATETIME         NULL,
+    [UpdatedByUserId] INT              NULL,
+    [LastUpdateGuid]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+	[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
     CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
