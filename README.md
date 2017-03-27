@@ -44,3 +44,7 @@ this should be seperated from the exception portal as a reusable tempalte, this 
 	a. use typescript for javascript spa silos
 	b. component attribute tempaltes should rendered by view engine
 ```
+
+
+
+Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ExceptionPortalDB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Force -OutputDir Models
