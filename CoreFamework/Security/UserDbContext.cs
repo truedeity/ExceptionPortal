@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CoreFamework.Security
 {
-	public partial class UserDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+	public partial class UserDbContext : DbContext
 	{
 		public virtual DbSet<User> User { get; set; }
 		public virtual DbSet<UserCd> UserCd { get; set; }

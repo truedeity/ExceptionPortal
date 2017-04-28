@@ -201,6 +201,26 @@ namespace ExceptionPortal.Data.Models
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedName)
+                    .HasName("RoleNameIndex");
+
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
+                entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.Name).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedName).HasMaxLength(256);
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.CreatedDt).HasColumnType("datetime");
@@ -258,6 +278,40 @@ namespace ExceptionPortal.Data.Models
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_UserLogins_UserId");
             });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId })
+                    .HasName("PK_UserRole");
+
+                entity.HasIndex(e => e.RoleId)
+                    .HasName("IX_UserRole_RoleId");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("IX_UserRole_UserId");
+
+                entity.Property(e => e.CreatedDt).HasColumnType("datetime");
+
+                entity.Property(e => e.EntityGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.IsSuppressed).HasDefaultValueSql("0");
+
+                entity.Property(e => e.LastUpdateGuid).HasDefaultValueSql("newid()");
+
+                entity.Property(e => e.UpdatedDt).HasColumnType("datetime");
+
+                entity.Property(e => e.UserRoleId).ValueGeneratedOnAdd();
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.UserRole)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("FK_UserRole_RoleId");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserRole)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_UserRole_UserId");
+            });
         }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -267,8 +321,10 @@ namespace ExceptionPortal.Data.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserCd> UserCd { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
     }
 }

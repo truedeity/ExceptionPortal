@@ -1,9 +1,16 @@
 ﻿CREATE TABLE [dbo].[UserRole] (
+	[UserRoleId]	INT NOT NULL IDENTITY(1, 1),
     [UserId] INT NOT NULL,
-    [RoleId] NVARCHAR (450) NOT NULL,
-		[EntityGuid]			UNIQUEIDENTIFIER NOT NULL DEFAULT(NEWID()),
+    [RoleId] INT NOT NULL,
+	[IsSuppressed]    BIT              CONSTRAINT [DF_UserRole_IsSuppressed] DEFAULT ((0)) NOT NULL,
+    [CreatedDt]       DATETIME         NOT NULL,
+    [CreatedByUserId] INT              NOT NULL,
+    [UpdatedDt]       DATETIME         NULL,
+    [UpdatedByUserId] INT              NULL,
+    [LastUpdateGuid]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+	[EntityGuid]	  uniqueidentifier not null default(newid()),
     CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED ([UserId] ASC, [RoleId] ASC),
-    CONSTRAINT [FK_UserRole_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[UserRole] ([RoleId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_UserRole_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Role] ([RoleId]) ON DELETE CASCADE,
     CONSTRAINT [FK_UserRole_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE
 );
 

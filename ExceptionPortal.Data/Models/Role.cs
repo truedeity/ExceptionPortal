@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 namespace ExceptionPortal.Data.Models
 {
-    public partial class UserCd : IEntity
+    public partial class Role : IEntity
     {
-        public int UserCdId { get; set; }
-        public string UserCdName { get; set; }
+        public Role()
+        {
+            UserRole = new HashSet<UserRole>();
+        }
+
+        public int RoleId { get; set; }
+        public string ConcurrencyStamp { get; set; }
+        public string Name { get; set; }
+        public string NormalizedName { get; set; }
         public bool IsSuppressed { get; set; }
         public DateTime CreatedDt { get; set; }
         public int CreatedByUserId { get; set; }
@@ -14,5 +21,7 @@ namespace ExceptionPortal.Data.Models
         public int? UpdatedByUserId { get; set; }
         public Guid LastUpdateGuid { get; set; }
         public Guid EntityGuid { get; set; }
+
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

@@ -159,6 +159,8 @@
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\UserCd.sql" />
     <Build Include="dbo\Tables\UserLogin.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ExceptionPortalDb.publish.xml" />

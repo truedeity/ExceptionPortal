@@ -1,6 +1,5 @@
 ﻿CREATE TABLE [dbo].[User] (
     [UserId]          INT              IDENTITY (1, 1) NOT NULL,
-		[EntityGuid]	  uniqueidentifier not null default(newid()),
     
     [AccessFailedCount]    INT                NOT NULL,
     [ConcurrencyStamp]     NVARCHAR (MAX)     NULL,
@@ -24,6 +23,7 @@
     [UpdatedDt]       DATETIME         NULL,
     [UpdatedByUserId] INT              NULL,
     [LastUpdateGuid]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+	[EntityGuid]	  uniqueidentifier not null default(newid()),
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([UserId] ASC)
 );
 

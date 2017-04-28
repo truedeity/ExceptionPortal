@@ -8,6 +8,7 @@ namespace ExceptionPortal.Data.Models
         public User()
         {
             UserLogin = new HashSet<UserLogin>();
+            UserRole = new HashSet<UserRole>();
         }
 
         public int UserId { get; set; }
@@ -34,5 +35,6 @@ namespace ExceptionPortal.Data.Models
         public Guid LastUpdateGuid { get; set; }
 
         public virtual ICollection<UserLogin> UserLogin { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

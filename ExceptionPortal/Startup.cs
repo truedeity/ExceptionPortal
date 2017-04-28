@@ -52,16 +52,16 @@ namespace ExceptionPortal
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// Add framework services.
-			services.AddDbContext<ApplicationDbContext>(options =>
-					options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			//services.AddDbContext<ApplicationDbContext>(options =>
+			//		options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddDbContext<CoreFamework.Security.UserDbContext>(options =>
 					options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddIdentity<CoreFamework.Security.User, IdentityRole<int>>()
+			services.AddIdentity<CoreFamework.Security.User, CoreFamework.Security.UserRole>()
 				.AddEntityFrameworkStores<CoreFamework.Security.UserDbContext, int>()
-				.AddUserStore<CoreFamework.Security.UserStore<CoreFamework.Security.User>>()
-				.AddDefaultTokenProviders();
+				.AddUserStore<CoreFamework.Security.UserStore>()
+                .AddDefaultTokenProviders();
 
 			services.AddMvc();
 
